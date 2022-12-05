@@ -1,0 +1,41 @@
+# DB 삭제/생성/선택
+DROP DATABASE IF EXISTS SB_AM;
+CREATE DATABASE SB_AM;
+USE SB_AM;
+
+# article 테이블 생성
+CREATE TABLE article(
+	id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	regDate DATETIME NOT NULL,
+	updateDate DATETIME NOT NULL,
+	title VARCHAR(200) NOT NULL,
+	`body` TEXT NOT NULL
+);
+
+
+DESC article;
+
+DROP TABLE article;
+
+SELECT * FROM article;
+
+# article 데이터 추가
+INSERT INTO article
+SET regDate = NOW(),
+updateDate = NOW(),
+title = '제목1',
+`body` = '제목1';
+
+# article 데이터 추가
+INSERT INTO article
+SET regDate = NOW(),
+updateDate = NOW(),
+title = '제목1',
+`body` = '제목2';
+
+# article 데이터 추가
+INSERT INTO article
+SET regDate = NOW(),
+updateDate = NOW(),
+title = '제목3',
+`body` = '제목3';
