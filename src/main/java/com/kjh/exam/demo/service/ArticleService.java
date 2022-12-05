@@ -17,8 +17,6 @@ public class ArticleService {
 	@Autowired
 	public ArticleService(ArticleRepository articleRepository) {
 		this.articleRepository = articleRepository;
-		
-		articleRepository.makeTestData();
 	}
 	
 	public Article getArticle(int id) {
@@ -37,8 +35,10 @@ public class ArticleService {
 		return articleRepository.getArticles();
 	}
 
-	public Article writeArticle(String title, String body) {
-		return articleRepository.writeArticle(title, body);
+	public int writeArticle(String title, String body) {
+		articleRepository.writeArticle(title, body);
+		
+		return articleRepository.getLastInsertId();
 	}
 	
 }
