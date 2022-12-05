@@ -39,3 +39,19 @@ SET regDate = NOW(),
 updateDate = NOW(),
 title = '제목3',
 `body` = '제목3';
+
+# `member` 테이블 생성
+CREATE TABLE `member`(
+	id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	regDate DATETIME NOT NULL,
+	updateDate DATETIME NOT NULL,
+	loginId VARCHAR(20) UNIQUE NOT NULL,
+	loginPw VARCHAR(100) NOT NULL,
+	`authLeber` SMALLINT UNSIGNED NOT NULL DEFAULT 3 COMMENT '권한 레벨 (3 = 일반, 7 = 관리자)',
+	`name` VARCHAR(20) NOT NULL,
+	nickname VARCHAR(20) NOT NULL,
+	cellphoneNum VARCHAR(20) NOT NULL,
+	email VARCHAR(20) NOT NULL
+	delStatus TINYINT UNSIGNED NOT NULL DEFAULT DEFAULT 0 COMMENT '탈퇴여부 (0 = 탈퇴 전, 1 = 탈퇴 후)',
+	delDate DATETIME COMMENT '탈퇴 날짜'
+);
