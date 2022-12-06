@@ -55,3 +55,38 @@ CREATE TABLE `member`(
 	delStatus TINYINT UNSIGNED NOT NULL DEFAULT DEFAULT 0 COMMENT '탈퇴여부 (0 = 탈퇴 전, 1 = 탈퇴 후)',
 	delDate DATETIME COMMENT '탈퇴 날짜'
 );
+
+# member 데이터 추가
+INSERT INTO `member`
+SET regDate = NOW(),
+updateDate = NOW(),
+loginId = 'admin',
+loginPw = 'admin',
+`authLevel` = '7',
+`name` = '관리자',
+nickname = '관리자',
+cellphoneNum = '01011112222',
+email = 'http-@naver.com';
+
+INSERT INTO `member`
+SET regDate = NOW(),
+updateDate = NOW(),
+loginId = 'test1',
+loginPw = 'test1',
+`name` = '유저1',
+nickname = '유저1',
+cellphoneNum = '01022223333',
+email = 'http-@naver.com';
+
+INSERT INTO `member`
+SET regDate = NOW(),
+updateDate = NOW(),
+loginId = 'test2',
+loginPw = 'test2',
+`name` = '유저2',
+nickname = '유저2',
+cellphoneNum = '01033334444',
+email = 'http-@naver.com';
+
+SELECT * FROM article
+SELECT * FROM `member`
