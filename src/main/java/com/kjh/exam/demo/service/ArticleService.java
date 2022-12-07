@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kjh.exam.demo.Util.Utility;
 import com.kjh.exam.demo.repository.ArticleRepository;
 import com.kjh.exam.demo.vo.Article;
+import com.kjh.exam.demo.vo.ResultData;
 
 @Service
 public class ArticleService {
@@ -35,10 +37,10 @@ public class ArticleService {
 		return articleRepository.getArticles();
 	}
 
-	public int writeArticle(String title, String body) {
+	public ResultData writeArticle(String title, String body) {
 		articleRepository.writeArticle(title, body);
-		
-		return articleRepository.getLastInsertId();
+		int id = articleRepository.getLastInsertId();
+		return ResultData.from("S-1", Utility.f("%d번 게시글이 생성되었습니다", id), id);
 	}
 	
 }
