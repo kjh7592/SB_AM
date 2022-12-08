@@ -12,6 +12,7 @@ CREATE TABLE article(
 	`body` TEXT NOT NULL
 );
 
+ALTER TABLE article ADD COLUMN memberId INT UNSIGNED NOT NULL AFTER regDate;
 
 DESC article;
 
@@ -30,7 +31,7 @@ title = '제목1',
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
-title = '제목1',
+title = '제목2',
 `body` = '제목2';
 
 # article 데이터 추가
@@ -40,6 +41,18 @@ updateDate = NOW(),
 title = '제목3',
 `body` = '제목3';
 
+
+SELECT * FROM article
+ORDER BY id DESC;
+
+SELECT LAST_INSERT_ID();
+
+INSERT INTO article(regDate, title, `body`)
+SELECT NOW(), CONCAT('제목_', RAND()), CONCAT('내용_', RAND())
+FROM article;
+
+
+
 # `member` 테이블 생성
 CREATE TABLE `member`(
 	id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -47,14 +60,16 @@ CREATE TABLE `member`(
 	updateDate DATETIME NOT NULL,
 	loginId VARCHAR(20) UNIQUE NOT NULL,
 	loginPw VARCHAR(100) NOT NULL,
-	`authLeber` SMALLINT UNSIGNED NOT NULL DEFAULT 3 COMMENT '권한 레벨 (3 = 일반, 7 = 관리자)',
+	`authLevel` SMALLINT UNSIGNED NOT NULL DEFAULT 3 COMMENT '권한 레벨 (3 = 일반, 7 = 관리자)',
 	`name` VARCHAR(20) NOT NULL,
 	nickname VARCHAR(20) NOT NULL,
 	cellphoneNum VARCHAR(20) NOT NULL,
-	email VARCHAR(20) NOT NULL
-	delStatus TINYINT UNSIGNED NOT NULL DEFAULT DEFAULT 0 COMMENT '탈퇴여부 (0 = 탈퇴 전, 1 = 탈퇴 후)',
+	email VARCHAR(20) NOT NULL,
+	delStatus TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '탈퇴여부 (0 = 탈퇴 전, 1 = 탈퇴 후)',
 	delDate DATETIME COMMENT '탈퇴 날짜'
 );
+
+DESC `member`;
 
 # member 데이터 추가
 INSERT INTO `member`
@@ -88,5 +103,16 @@ nickname = '유저2',
 cellphoneNum = '01033334444',
 email = 'http-@naver.com';
 
-SELECT * FROM article
-SELECT * FROM `member`
+SELECT * FROM `member`;
+
+# `member` 테이블 삭제
+DROP TABLE `member`;
+
+ALTER TABLE article ADD COLUMN memberId INT UNSIGNED NOT NULL AFTER updateDate;
+
+UPDATE article
+SET memberId = 2
+WHERE memberId NOT NULL;
+
+SELECT *
+FROM article;

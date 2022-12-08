@@ -12,6 +12,8 @@ import com.kjh.exam.demo.service.ArticleService;
 import com.kjh.exam.demo.vo.Article;
 import com.kjh.exam.demo.vo.ResultData;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class UsrArticleController {
 
@@ -26,8 +28,14 @@ public class UsrArticleController {
 	// 액션매서드
 	@RequestMapping("/usr/article/doAdd")
 	@ResponseBody
-	public ResultData<Article> doAdd(String title, String body) {
+	public ResultData<Article> doAdd(HttpSession httpSession, String title, String body) {
 
+		if(httpSession.getAttribute("loginedMemberId") == null) {
+			return ResultData.from("F-A", "로그인 후 이용해주세요");
+		}
+		
+		int loginedMemberId = (int) httpSession.getAttribute("loginedMemberId");
+		
 		if (Utility.empty(title)) {
 			return ResultData.from("F-1", Utility.f("제목을 입력해주세요"));
 		}
@@ -36,7 +44,7 @@ public class UsrArticleController {
 			return ResultData.from("F-2", Utility.f("내용을 입력해주세요"));
 		}
 
-		ResultData<Integer> writeArticleRd = articleService.writeArticle(title, body);
+		ResultData<Integer> writeArticleRd = articleService.writeArticle(loginedMemberId, title, body);
 
 		Article article = articleService.getArticle((int) writeArticleRd.getData1());
 
@@ -53,9 +61,17 @@ public class UsrArticleController {
 
 	@RequestMapping("/usr/article/doDelete")
 	@ResponseBody
-	public ResultData<Integer> doDelete(int id) {
+	public ResultData<Integer> doDelete(HttpSession httpSession, int id) {
+		
+		if(httpSession.getAttribute("loginedMemberId") == null) {
+			return ResultData.from("F-A", "로그인 후 이용해주세요");
+		}
 
 		Article article = articleService.getArticle(id);
+		
+//		if(article.getMemberId() != (int) httpSession.getAttribute("loginedMemberId")) {
+//			return ResultData.from("F-2", "권한이 없습니다");
+//		}
 
 		if (article == null) {
 			return ResultData.from("F-1", Utility.f("%d번 게시물은 존재하지 않습니다", id));
@@ -68,8 +84,12 @@ public class UsrArticleController {
 
 	@RequestMapping("/usr/article/doModify")
 	@ResponseBody
-	public ResultData<Integer> doModify(int id, String title, String body) {
+	public ResultData<Integer> doModify(HttpSession httpSession, int id, String title, String body) {
 
+		if(httpSession.getAttribute("loginedMemberId") == null) {
+			return ResultData.from("F-A", "로그인 후 이용해주세요");
+		}
+		
 		Article article = articleService.getArticle(id);
 
 		if (article == null) {
