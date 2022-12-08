@@ -45,12 +45,12 @@ public class MemberService {
 		return memberRepository.getMemberById(id);
 	}
 	
-	private Member getMemberByLoginId(String LoginId) {
+	public Member getMemberByLoginId(String LoginId) {
 		return memberRepository.getMemberByLoginId(LoginId);
 	}
 	
 	private Member getMemberByNameAndEmail(String name, String email) {
 		return memberRepository.getMemberByNameAndEmail(name, email);
 	}
-	
+
 }
