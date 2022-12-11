@@ -10,8 +10,6 @@ import com.kjh.exam.demo.repository.ArticleRepository;
 import com.kjh.exam.demo.vo.Article;
 import com.kjh.exam.demo.vo.ResultData;
 
-import jakarta.servlet.http.HttpSession;
-
 @Service
 public class ArticleService {
 
