@@ -8,9 +8,17 @@
 <title>LIST</title>
 </head>
 <body>
-	<div>list</div>
+	<h1>Article List</h1>
 	<hr />
-	<table>
+	<header>
+		<a href="">로고</a>
+		
+		<ul>
+			<li><a href="/">HOME</a></li>
+			<li><a href="/usr/article/list">LIST</a></li>
+		</ul>
+	</header>
+	<table border="1">
 		<thead>
 			<tr>
 				<th>번호</th>
@@ -20,12 +28,14 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
+			<c:forEach var="article" items="${articles}">
+				<tr>
+					<td>${article.id}</td>
+					<td>${article.regDate}</td>
+					<td><a href="detail?id=${article.id}">${article.title}</a></td>
+					<td>${article.memberId}</td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 </body>
