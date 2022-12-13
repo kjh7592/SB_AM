@@ -20,8 +20,8 @@
 						<tr>
 							<td>${article.id}</td>
 							<td>${article.regDate.substring(2,16)}</td>
-							<td><a href="../article/detail?id=${article.id}">${article.title}</a></td>
-							<td>${article.memberId}</td>
+							<td><a class="hover:underline" href="../article/detail?id=${article.id}">${article.title}</a></td>
+							<td>${article.writerName}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
