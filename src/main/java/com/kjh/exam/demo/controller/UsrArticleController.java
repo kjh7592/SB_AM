@@ -2,6 +2,7 @@ package com.kjh.exam.demo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import com.kjh.exam.demo.Util.Utility;
 import com.kjh.exam.demo.service.ArticleService;
 import com.kjh.exam.demo.vo.Article;
 import com.kjh.exam.demo.vo.ResultData;
+import com.kjh.exam.demo.vo.Rq;
 
 @Controller
 public class UsrArticleController {
@@ -29,13 +31,13 @@ public class UsrArticleController {
 	// 액션매서드
 	@RequestMapping("/usr/article/doAdd")
 	@ResponseBody
-	public ResultData<Article> doAdd(HttpSession httpSession, String title, String body) {
+	public ResultData<Article> doAdd(HttpServletRequest req, String title, String body) {
 
-		if (httpSession.getAttribute("loginedMemberId") == null) {
+		Rq rq = new Rq(req);
+		
+		if(rq.getLoginedMemberId() == 0) {
 			return ResultData.from("F-A", "로그인 후 이용해주세요");
 		}
-
-		int loginedMemberId = (int) httpSession.getAttribute("loginedMemberId");
 
 		if (Utility.empty(title)) {
 			return ResultData.from("F-1", Utility.f("제목을 입력해주세요"));
@@ -45,7 +47,7 @@ public class UsrArticleController {
 			return ResultData.from("F-2", Utility.f("내용을 입력해주세요"));
 		}
 
-		ResultData<Integer> writeArticleRd = articleService.writeArticle(loginedMemberId, title, body);
+		ResultData<Integer> writeArticleRd = articleService.writeArticle(rq.getLoginedMemberId(), title, body);
 
 		Article article = articleService.getArticle((int) writeArticleRd.getData1());
 
@@ -64,13 +66,13 @@ public class UsrArticleController {
 
 	@RequestMapping("/usr/article/doDelete")
 	@ResponseBody
-	public String doDelete(HttpSession httpSession, int id) {
+	public String doDelete(HttpServletRequest req, int id) {
 
-		if (httpSession.getAttribute("loginedMemberId") == null) {
+		Rq rq = new Rq(req);
+		
+		if(rq.getLoginedMemberId() == 0) {
 			return Utility.jsHistoryBack("로그인 후 이용해주세요");
 		}
-
-		int loginedMemberId = (int) httpSession.getAttribute("loginedMemberId");
 
 		Article article = articleService.getArticle(id);
 
@@ -78,7 +80,7 @@ public class UsrArticleController {
 			return Utility.jsHistoryBack(Utility.f("%d번 게시물은 존재하지 않습니다", id));
 		}
 		
-		if (loginedMemberId != article.getMemberId()) {
+		if (rq.getLoginedMemberId() != article.getMemberId()) {
 			return Utility.jsHistoryBack("해당 게시물에 대한 권한이 없습니다");
 		}
 
@@ -89,21 +91,21 @@ public class UsrArticleController {
 
 	@RequestMapping("/usr/article/doModify")
 	@ResponseBody
-	public ResultData<Article> doModify(HttpSession httpSession, int id, String title, String body) {
+	public ResultData<Article> doModify(HttpServletRequest req, int id, String title, String body) {
 
-		if (httpSession.getAttribute("loginedMemberId") == null) {
+		Rq rq = new Rq(req);
+		
+		if(rq.getLoginedMemberId() == 0) {
 			return ResultData.from("F-A", "로그인 후 이용해주세요");
-		}
-
-		int loginedMemberId = (int) httpSession.getAttribute("loginedMemberId");
-
+		}	
+		
 		Article article = articleService.getArticle(id);
 		
 //		if (article == null) {
 //			return ResultData.from("F-1", Utility.f("%d번 게시물은 존재하지 않습니다", id));
 //		}
 
-		ResultData actorCanModifyRd = articleService.actorCanMD(loginedMemberId, article);
+		ResultData actorCanModifyRd = articleService.actorCanMD(rq.getLoginedMemberId(), article);
 		
 		if(actorCanModifyRd.isFail()) {
 			return actorCanModifyRd;
@@ -113,15 +115,11 @@ public class UsrArticleController {
 	}
 
 	@RequestMapping("/usr/article/detail")
-	public String detail(HttpSession httpSession, Model model, int id) {
+	public String showDetail(HttpServletRequest req, Model model, int id) {
 		
-		int loginedMemberId = 0;
+		Rq rq = new Rq(req);
 		
-		if (httpSession.getAttribute("loginedMemberId") != null) {
-			loginedMemberId = (int) httpSession.getAttribute("loginedMemberId");
-		}
-
-		Article article = articleService.getForPrintArticle(loginedMemberId, id);
+		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
 		model.addAttribute("article", article);
 		
