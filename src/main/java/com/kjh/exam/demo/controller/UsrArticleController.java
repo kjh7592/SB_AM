@@ -33,7 +33,7 @@ public class UsrArticleController {
 	@ResponseBody
 	public ResultData<Article> doAdd(HttpServletRequest req, String title, String body) {
 
-		Rq rq = new Rq(req);
+		Rq rq = (Rq) req.getAttribute("rq");
 		
 		if(rq.getLoginedMemberId() == 0) {
 			return ResultData.from("F-A", "로그인 후 이용해주세요");
@@ -57,6 +57,8 @@ public class UsrArticleController {
 	@RequestMapping("/usr/article/list")
 	public String showList(Model model) {
 
+		System.out.println("컨트롤러 실행됨");
+		
 		List<Article> articles = articleService.getArticles();
 		
 		model.addAttribute("articles", articles);
