@@ -35,10 +35,6 @@ public class UsrArticleController {
 
 		Rq rq = (Rq) req.getAttribute("rq");
 		
-		if(rq.getLoginedMemberId() == 0) {
-			return ResultData.from("F-A", "로그인 후 이용해주세요");
-		}
-
 		if (Utility.empty(title)) {
 			return ResultData.from("F-1", Utility.f("제목을 입력해주세요"));
 		}
@@ -57,8 +53,6 @@ public class UsrArticleController {
 	@RequestMapping("/usr/article/list")
 	public String showList(Model model) {
 
-		System.out.println("컨트롤러 실행됨");
-		
 		List<Article> articles = articleService.getArticles();
 		
 		model.addAttribute("articles", articles);
@@ -70,7 +64,7 @@ public class UsrArticleController {
 	@ResponseBody
 	public String doDelete(HttpServletRequest req, int id) {
 
-		Rq rq = new Rq(req);
+		Rq rq = (Rq) req.getAttribute("rq");
 		
 		if(rq.getLoginedMemberId() == 0) {
 			return Utility.jsHistoryBack("로그인 후 이용해주세요");
@@ -95,7 +89,7 @@ public class UsrArticleController {
 	@ResponseBody
 	public ResultData<Article> doModify(HttpServletRequest req, int id, String title, String body) {
 
-		Rq rq = new Rq(req);
+		Rq rq = (Rq) req.getAttribute("rq");
 		
 		if(rq.getLoginedMemberId() == 0) {
 			return ResultData.from("F-A", "로그인 후 이용해주세요");
@@ -119,7 +113,7 @@ public class UsrArticleController {
 	@RequestMapping("/usr/article/detail")
 	public String showDetail(HttpServletRequest req, Model model, int id) {
 		
-		Rq rq = new Rq(req);
+		Rq rq = (Rq) req.getAttribute("rq");
 		
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
