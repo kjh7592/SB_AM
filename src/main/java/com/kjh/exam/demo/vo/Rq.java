@@ -33,7 +33,7 @@ public class Rq {
 		this.loginedMemberId = loginedMemberId;
 	}
 
-	public void jsPrintHistoryBack(String msg) throws IOException {
+	public void jsPrintHistoryBack(String msg) {
 		resp.setContentType("text/html; charset=UTF-8;");
 
 		print(Utility.jsHistoryBack(msg));
@@ -53,6 +53,12 @@ public class Rq {
 
 	public void logout() {
 		session.removeAttribute("loginedMemberId");		
+	}
+
+	public String jsReturnOnView(String msg, boolean historyBack) {
+		req.setAttribute("msg", msg);
+		req.setAttribute("historyBack", true);
+		return "usr/common/js";
 	}
 	
 }
