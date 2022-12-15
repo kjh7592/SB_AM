@@ -59,6 +59,11 @@ public class UsrMemberController {
 		return ResultData.from(doJoinRd.getResultCode(), doJoinRd.getMsg(), "member", member);
 	}
 	
+	@RequestMapping("/usr/member/login")
+	public String showLogin() {
+		return "usr/member/login";
+	}
+	
 	@RequestMapping("/usr/member/doLogin")
 	@ResponseBody
 	public ResultData doLogin(HttpSession httpSession, String loginId, String loginPw) {

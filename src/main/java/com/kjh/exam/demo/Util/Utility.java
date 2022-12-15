@@ -1,7 +1,5 @@
 package com.kjh.exam.demo.Util;
 
-import com.kjh.exam.demo.vo.ResultData;
-
 public class Utility {
 
 	public static boolean empty(Object obj) {
