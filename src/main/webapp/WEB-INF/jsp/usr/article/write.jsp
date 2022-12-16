@@ -3,11 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="pageTitle" value="ARTICLE WRITE" />
 <%@ include file="../common/head.jsp" %>
+
 <section class="mt-8 text-xl">
 	<div class="container mx-auto px-3">
 		<form action="doWrite" method="POST">
-<%-- 			<input type="hidden" name="id" value="${article.id }" /> --%>
-			<div class="table-box-type-1">
+			<div class="table table-zebra w-full">
 				<table>
 					<colgroup>
 						<col width="200" />

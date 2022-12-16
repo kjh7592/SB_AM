@@ -5,7 +5,7 @@
 <%@ include file="../common/head.jsp" %>
 <section class="mt-8 text-xl">
 	<div class="container mx-auto px-3">
-		<c:if test="${rq.getLoginedMemberId() }">
+		<c:if test="${rq.getLoginedMemberId() != 0}">
 			<div class="mb-2 flex justify-end">
 				<a class="btn-text-link btn btn-active btn-accent" href="/usr/article/write">WRITE</a>
 			</div>
