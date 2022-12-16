@@ -28,26 +28,32 @@ public class UsrArticleController {
 		this.articleService = articleService;
 	}
 
-	// 액션매서드
-	@RequestMapping("/usr/article/doAdd")
+	@RequestMapping("/usr/article/write")
+	public String showWrite() {
+		return"usr/article/write";
+	}
+	
+	@RequestMapping("/usr/article/doWrite")
 	@ResponseBody
-	public ResultData<Article> doAdd(HttpServletRequest req, String title, String body) {
+	public String doWrite(HttpServletRequest req, String title, String body) {
 
 		Rq rq = (Rq) req.getAttribute("rq");
 		
 		if (Utility.empty(title)) {
-			return ResultData.from("F-1", Utility.f("제목을 입력해주세요"));
+			return Utility.jsHistoryBack("제목을 입력해주세요");
 		}
 
 		if (Utility.empty(body)) {
-			return ResultData.from("F-2", Utility.f("내용을 입력해주세요"));
+			return Utility.jsHistoryBack("내용을 입력해주세요");
 		}
 
 		ResultData<Integer> writeArticleRd = articleService.writeArticle(rq.getLoginedMemberId(), title, body);
 
+		int id = (int) writeArticleRd.getData1();
+		
 		Article article = articleService.getArticle((int) writeArticleRd.getData1());
 
-		return ResultData.from(writeArticleRd.getResultCode(), writeArticleRd.getMsg(), "article", article);
+		return Utility.jsReplace(Utility.f("%d번 글이 생성되었습니다", id), Utility.f("detail?id=%d", id));
 	}
 
 	@RequestMapping("/usr/article/list")

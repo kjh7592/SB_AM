@@ -14,7 +14,7 @@
 				<tbody>
 						<tr>
 							<th>번호</th>
-							<th>${article.id}</th>
+							<th><span class="badge">${article.id}</span></th>
 						</tr>
 						<tr>
 							<th>작성날짜</th>
@@ -42,8 +42,8 @@
 		<div class="btns">
 			<button class="btn-text-link" type="button" onclick="history.back();">뒤로가기</button>
 			<c:if test="${article.actorCanChangeData }">
-				<a class="btn-text-link" href="modify?id=${article.id }">수정</a>
-				<a class="btn-text-link" onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;" href="doDelete?id=${article.id }">삭제</a>
+				<a class="btn-text-link btn btn-active btn-accent" href="modify?id=${article.id }">수정</a>
+				<a class="btn-text-link btn btn-error" onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;" href="doDelete?id=${article.id }">삭제</a>
 			</c:if>
 		</div>
 	</div>

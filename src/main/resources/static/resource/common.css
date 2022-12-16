@@ -24,6 +24,10 @@ html > body {
 }
 
 .btn-text-link:hover {
-	color: silver;
+	color: olive;
 	text-decoration: underline;
+}
+
+body {
+	min-width: 800px;
 }

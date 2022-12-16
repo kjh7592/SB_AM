@@ -32,14 +32,14 @@
 							</tr>
 							<tr>
 								<th>제목</th>
-								<th><input type="text" name="title" placeholder="제목을 입력해주세요" value="${article.title}" /></th>
+								<th><input class="input input-bordered input-error w-full max-w-xs" type="text" name="title" placeholder="제목을 입력해주세요" value="${article.title}" /></th>
 							</tr>
 							<tr>
 								<th>내용</th>
-								<td><textarea name="body" placeholder="내용을 입력해주세요" >${article.body}</textarea></td>
+								<td><textarea class="textarea textarea-error" name="body" placeholder="내용을 입력해주세요" >${article.body}</textarea></td>
 							</tr>
 							<tr>
-								<th colspan="2"><button>수정</button></th>
+								<th colspan="2"><button class="btn btn-outline btn-primary">수정</button></th>
 							</tr>
 					</tbody>
 				</table>
