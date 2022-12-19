@@ -13,7 +13,7 @@ public interface ArticleRepository {
 		
 		public Article getArticle(int id);
 		
-		public List<Article> getArticles(int boardId);
+		public List<Article> getArticles(int boardId, int limitStart, int itemInAPage);
 		
 		public void deleteArticle(int id);
 		

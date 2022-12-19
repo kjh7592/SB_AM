@@ -33,8 +33,12 @@ public class ArticleService {
 		articleRepository.modifyArticle(id, title, body);
 	}
 
-	public List<Article> getArticles(int boardId) {
-		return articleRepository.getArticles(boardId);
+	public List<Article> getArticles(int boardId, int itemInAPage, int page) {
+		
+//		select * from article where boardId = 1 order by desc limit 0, 10;
+		int limitStart = (page - 1) * itemInAPage;
+		
+		return articleRepository.getArticles(boardId, limitStart, itemInAPage);
 	}
 
 	public ResultData<Integer> writeArticle(int memberId, int boardId, String title, String body) {
