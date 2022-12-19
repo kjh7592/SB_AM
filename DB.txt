@@ -137,6 +137,17 @@ SELECT * FROM article;
 SELECT * FROM `member`;
 SELECT * FROM board;
 
+# 게시물 갯수 늘리기
+-- INSERT Into article
+-- (
+-- 	regDate, updateDate, memberId, boardId, title, `body`
+-- )
+-- select now(), now(), Floor(RAND() * 3) + 1, FLOOR(RAND() * 2) + 1, CONCAt('제목_',RAND()), CONCAT('내용_',RAND())
+-- from article
+
+-- select COUNT(*)
+-- from article
+
 # article 테이블 삭제
 DROP TABLE article;
 
