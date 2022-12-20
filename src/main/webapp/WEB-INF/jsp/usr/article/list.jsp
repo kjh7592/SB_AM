@@ -38,9 +38,36 @@
 		</div>	
 		<div class="page-menu mt-2 flex justify-center">
 			<div class="btn-group">
-				<c:forEach begin="1" end="${pagesCount }" var="i">
+
+<%-- 			<c:set /> 이거 쓰니까 500번 오류남 --%>
+				<c:set var="pageMenuLen" value="5" ></c:set>
+				<c:set var="startPage" value="${page - pageMenuLen >= 1 ? page - pageMenuLen : 1}" ></c:set>
+				<c:set var="endPage" value="${page + pageMenuLen <= pagesCount ? page + pageMenuLen : pagesCount}" ></c:set>
+			
+				<c:if test="${page == 1 }">
+				<!-- 			« -->
+<!-- 			» -->
+<!-- 위에 두개 쓰니까 브라우저에서 안보임 -->
+					<a class="btn btn-sm  btn-disabled">&lt;&lt;</a>					
+					<a class="btn btn-sm  btn-disabled">&lt;</a>					
+				</c:if>
+				
+				<c:if test="${page > 1 }">
+					<a class="btn btn-sm" href="?boardId=${boardId }&page=1">&lt;&lt;</a>					
+					<a class="btn btn-sm" href="?boardId=${boardId }&page=${page - 1}">&lt;</a>					
+				</c:if>
+				<c:forEach begin="${startPage }" end="${endPage }" var="i">
 					<a class="btn btn-sm ${page == i ? 'btn-active' : ''}" href="?boardId=${boardId }&page=${i }">${i }</a>
 				</c:forEach>
+				
+				<c:if test="${page < pagesCount }">
+					<a class="btn btn-sm" href="?boardId=${boardId }&page=${page + 1}">&gt;</a>					
+					<a class="btn btn-sm" href="?boardId=${boardId }&page=${pagesCount }">&gt;&gt;</a>					
+				</c:if>
+				<c:if test="${page == pagesCount }">
+					<a class="btn btn-sm  btn-disabled">&gt;</a>					
+					<a class="btn btn-sm  btn-disabled">&gt;&gt;</a>					
+				</c:if>
 			</div>
 		</div>
 	</div>
