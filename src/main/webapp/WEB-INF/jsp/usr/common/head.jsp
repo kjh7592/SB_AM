@@ -17,6 +17,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 <!-- 커스텀 공통 CSS -->
 <link rel="stylesheet" href="/resource/common.css" />
+<!-- 커스텀 공통 JS -->
+<script src="/resource/common.js" defer="defer"></script>
 </head>
 <body>
 	<header>

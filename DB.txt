@@ -12,8 +12,6 @@ CREATE TABLE article(
 	`body` TEXT NOT NULL
 );
 
-ALTER TABLE article ADD COLUMN memberId INT UNSIGNED NOT NULL AFTER regDate;
-
 DESC article;
 
 SELECT * FROM article;
@@ -91,7 +89,7 @@ email = 'http-@naver.com';
 
 SELECT * FROM `member`;
 
-ALTER TABLE article ADD COLUMN memberId INT UNSIGNED NOT NULL AFTER updateDate;
+ALTER TABLE article ADD COLUMN memberId INT UNSIGNED NOT NULL DEFAULT 0 AFTER updateDate;
 
 UPDATE article
 SET memberId = 2;
@@ -133,20 +131,27 @@ UPDATE article
 SET boardId = 2
 WHERE id IN (3);
 
+# article 테이블에 hitCount컬럼 추가
+ALTER TABLE article ADD COLUMN hitCount INT UNSIGNED NOT NULL DEFAULT 0;
+
 SELECT * FROM article;
 SELECT * FROM `member`;
 SELECT * FROM board;
 
+SELECT LAST_INSERT_ID();
+
 # 게시물 갯수 늘리기
--- INSERT Into article
+-- INSERT INTO article
 -- (
 -- 	regDate, updateDate, memberId, boardId, title, `body`
 -- )
--- select now(), now(), Floor(RAND() * 3) + 1, FLOOR(RAND() * 2) + 1, CONCAt('제목_',RAND()), CONCAT('내용_',RAND())
--- from article
+-- SELECT NOW(), NOW(), FLOOR(RAND() * 3) + 1, FLOOR(RAND() * 2) + 1, CONCAT('제목_',RAND()), CONCAT('내용_',RAND())
+-- FROM article;
 
--- select COUNT(*)
--- from article
+SELECT COUNT(id)
+FROM article;
+
+SELECT FLOOR(RAND() * 3) + 1;
 
 # article 테이블 삭제
 DROP TABLE article;
@@ -157,7 +162,7 @@ DROP TABLE `member`;
 SELECT * FROM article
 ORDER BY id DESC;
 
-SELECT LAST_INSERT_ID();
+
 
 INSERT INTO article(regDate, title, `body`)
 SELECT NOW(), CONCAT('제목_', RAND()), CONCAT('내용_', RAND())
@@ -184,3 +189,8 @@ SELECT A.*, M.nickname AS writerName
 			INNER JOIN `member` AS M
 			ON A.memberId = M.id
 			ORDER BY id DESC;
+			
+SELECT COUNT(*)
+FROM article
+WHERE 1 = 1
+AND boardId = 2;
