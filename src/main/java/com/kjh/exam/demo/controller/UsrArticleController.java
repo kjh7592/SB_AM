@@ -151,17 +151,24 @@ public class UsrArticleController {
 	@RequestMapping("/usr/article/detail")
 	public String showDetail(Model model, int id) {
 		
-		ResultData<Integer> increseHitCountRd = articleService.increseHitCount(id);
-		
-		if(increseHitCountRd.isFail()) {
-			return rq.jsReturnOnView(increseHitCountRd.getMsg(), true);
-		}
-		
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
 		model.addAttribute("article", article);
 		
 		return "usr/article/detail";
+	}
+	
+	@RequestMapping("/usr/article/doIncreseHitCountRd")
+	@ResponseBody
+	public ResultData<Integer> doIncreseHitCountRd(int id) {
+		
+		ResultData<Integer> increseHitCountRd = articleService.increseHitCount(id);
+		
+		if(increseHitCountRd.isFail()) {
+			return increseHitCountRd;
+		}
+		
+		return ResultData.from(increseHitCountRd.getResultCode(), increseHitCountRd.getMsg(), "hitCount", articleService.getArticleHitCount(id));
 	}
 
 }

@@ -65,7 +65,7 @@ public class Rq {
 
 	public String jsReturnOnView(String msg, boolean historyBack) {
 		req.setAttribute("msg", msg);
-		req.setAttribute("historyBack", true);
+		req.setAttribute("historyBack", historyBack);
 		return "usr/common/js";
 	}
 

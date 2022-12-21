@@ -102,11 +102,16 @@
 		SELECT LAST_INSERT_ID()
 	</select>
 		
-		
 	<update id="increseHitCount">
 		UPDATE article 
 			SET hitCount = hitCount + 1 
 			WHERE id = #{id}
 	</update>
+	
+	<select id="getArticleHitCount" resultType="int">
+		SELECT hitCount
+		FROM article
+		WHERE id = #{id}
+	</select>
 		
 </mapper>
