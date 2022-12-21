@@ -12,6 +12,10 @@ public class ResultData<DT> {
 	private String data1Name;
 	@Getter
 	private DT data1;
+	@Getter
+	private String data2Name;
+	@Getter
+	private Object data2;
 	
 	public static <DT> ResultData<DT> from(String resultCode, String msg) {
 		return from(resultCode, msg, null, null);
@@ -35,6 +39,11 @@ public class ResultData<DT> {
 	public boolean isFail() {
 		// S로 시작하는 문자가 온다면 실패했다라는 것을 알려주기 위한 것
 		return isSuccess() == false;
+	}
+
+	public void setData2(String data2Name, Object data2) {
+		this.data2Name = data2Name;
+		this.data2 = data2;
 	}
 
 	
