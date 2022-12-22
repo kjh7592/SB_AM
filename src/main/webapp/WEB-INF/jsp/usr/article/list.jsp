@@ -34,6 +34,7 @@
 					<col />
 					<col width="120" />
 					<col width="50" />
+					<col width="50" />
 				</colgroup>
 				<thead>
 					<tr>
@@ -42,6 +43,7 @@
 						<th>제목</th>
 						<th>작성자</th>
 						<th>조회수</th>
+						<th>추천</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -52,6 +54,7 @@
 							<td><a class="hover:underline" href="../article/detail?id=${article.id}">${article.title}</a></td>
 							<td>${article.writerName}</td>
 							<td>${article.hitCount}</td>
+							<td>${article.sumReactionPoint}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
