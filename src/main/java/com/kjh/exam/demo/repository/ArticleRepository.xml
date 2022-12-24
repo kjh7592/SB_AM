@@ -90,13 +90,13 @@
 								</otherwise>
 							</choose>
 						</if>
-						ORDER BY A.id DESC
 						LIMIT #{limitStart}, #{itemInAPage}
 				) AS A
 			LEFT JOIN reactionPoint AS RP
 			ON RP.relTypeCode = 'article'
 			AND A.id = RP.relId
-			GROUP BY A.id;
+			GROUP BY A.id
+			ORDER BY A.id DESC;
 	</select>
 	
 	<delete id="deleteArticle">
