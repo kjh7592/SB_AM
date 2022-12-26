@@ -29,16 +29,17 @@
 		
 		$.get('../reactionPoint/getReactionPoint', {
 			id : params.id,
+			relTypeCode : 'article',
 			ajaxMode : 'Y'
 		}, function(data){
 			if(data.data1.sumReactionPoint > 0){
-					let goodBtn = $('#goodBtn');
-					goodBtn.removeClass('btn-outline');
-// 					goodBtn.prop('href', '취소되는 요청으로');
+				let goodBtn = $('#goodBtn');
+				goodBtn.removeClass('btn-outline');
+				goodBtn.prop('href', '../reactionPoint/delReactionPoint?id=${article.id}&relTypeCode=article&point=1');
 			}else if(data.data1.sumReactionPoint < 0){
-					let badBtn = $('#badBtn');
-					badBtn.removeClass('btn-outline');
-// 					badBtn.prop('href', '취소되는 요청으로');
+				let badBtn = $('#badBtn');
+				badBtn.removeClass('btn-outline');
+				badBtn.prop('href', '../reactionPoint/delReactionPoint?id=${article.id}&relTypeCode=article&point=-1');
 			}
 		}, 'json');
 	}
@@ -87,14 +88,17 @@
 							<th>추천</th>
 							<th>
 								<c:if test="${rq.getLoginedMemberId() == 0 }">
-									<span class="badge">${article.sumReactionPoint}</span>
-								</c:if>
-								<c:if test="${rq.getLoginedMemberId() != 0 }">
-									<a id="goodBtn" class="btn btn-xs btn-outline" href="../reactionPoint/doGoodReactionPoint?id=${article.id }">좋아요👍</a>
+<%-- 									<span class="badge">${article.sumReactionPoint}</span> --%>
 									<span class="badge">좋아요 : ${article.goodReactionPoint}개</span>
 									<br />
-									<a id="badBtn" class="btn btn-xs btn-outline" href="../reactionPoint/doBadReactionPoint?id=${article.id }">싫어요👎</a>
-									<span class="badge">싫어요 : ${article.badReactionPoint}개</span>
+									<span class="badge">싫어요 : ${article.badReactionPoint * -1}개</span>
+								</c:if>
+								<c:if test="${rq.getLoginedMemberId() != 0 }">
+									<a id="goodBtn" class="btn btn-xs btn-outline" href="../reactionPoint/doReactionPoint?id=${article.id }&relTypeCode=article&point=1">좋아요👍</a>
+									<span class="badge">좋아요 : ${article.goodReactionPoint}개</span>
+									<br />
+									<a id="badBtn" class="btn btn-xs btn-outline" href="../reactionPoint/doReactionPoint?id=${article.id }&relTypeCode=article&point=-1">싫어요👎</a>
+									<span class="badge">싫어요 : ${article.badReactionPoint * -1}개</span>
 								</c:if>
 							</th>
 						</tr>
