@@ -46,11 +46,11 @@
 	
 	$(function(){
 // 		실전코드
-// 		ArticleDetail__increseHitCount();
+		ArticleDetail__increseHitCount();
 		ReactionPoint__getReactionPoint();
 		
 // 		연습코드
-		setTimeout(ArticleDetail__increseHitCount, 2000);
+// 		setTimeout(ArticleDetail__increseHitCount, 2000);
 	})
 	
 </script>
