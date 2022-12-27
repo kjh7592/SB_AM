@@ -56,7 +56,7 @@
 </script>
 
 <section class="mt-8 text-xl">
-	<div class="container mx-auto px-3">
+	<div class="container mx-auto px-3 pb-5 border-bottom-line">
 		<div class="table-box-type-1">
 			<table>
 				<colgroup>
@@ -113,13 +113,28 @@
 				</tbody>
 			</table>
 		</div>	
-		<div class="btns">
+		<div class="btns mt-2">
 			<button class="btn-text-link" type="button" onclick="history.back();">뒤로가기</button>
 			<c:if test="${article.actorCanChangeData }">
 				<a class="btn-text-link btn btn-active btn-accent" href="modify?id=${article.id }">수정</a>
 				<a class="btn-text-link btn btn-error" onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;" href="doDelete?id=${article.id }">삭제</a>
 			</c:if>
+<%-- 			<a class="btn-text-link btn btn-error" href="doReply?id=${article.id }&memberId=${memberId}">댓글 작성</a> --%>
 		</div>
 	</div>
 </section>
+
+<section class="mt-8 text-xl">
+	<div class="container mx-auto px-3 pb-5 border-bottom-line">
+		<h2>댓글</h2>
+		
+		<form action="../reply/doWrite" method="POST">
+			<div class="mt-4 p-4 border rounded-lg border-gray-400 text-base">
+				<div class="mb-2">현재 로그인한 회원 닉네임</div>
+				<textarea class="textarea textarea-bordered w-full" name="body" rows="2" placeholder="댓글을 남겨주세요"></textarea>
+				<div class="flex justify-end"><button class="btn btn-active btn-ghost btn-sm" >등록</button></div>
+			</div>
+		</form>
+	</div>
+</section>	
 <%@ include file="../common/foot.jsp" %>

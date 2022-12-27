@@ -37,7 +37,7 @@
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td><textarea class="textarea textarea-error" name="body" placeholder="내용을 입력해주세요" ></textarea></td>
+							<td><textarea class="textarea textarea-error w-full" name="body" placeholder="내용을 입력해주세요" ></textarea></td>
 						</tr>
 						<tr>
 							<th colspan="2"><button class="btn btn-outline btn-primary">작성</button></th>
