@@ -7,8 +7,8 @@
 <section class="mt-8 text-xl">
 	<div class="container mx-auto px-3">
 		<form action="doWrite" method="POST">
-			<div class="table table-zebra w-full">
-				<table>
+			<div class="table-box-type-1">
+				<table class="table table-zebra w-full">
 					<colgroup>
 						<col width="200" />
 					</colgroup>
@@ -17,11 +17,11 @@
 						<tr>
 							<th>게시판</th>
 							<th>
-<!-- 								<select name="boardId" > -->
-<!-- 									<option>게시판을 선택해주세요</option> -->
-<!-- 									<option value="1">공지사항</option> -->
-<!-- 									<option value="2">자유</option> -->
-<!-- 								</select> -->
+	<!-- 								<select name="boardId" > -->
+	<!-- 									<option>게시판을 선택해주세요</option> -->
+	<!--									<option value="1">공지사항</option> -->
+	<!-- 								<option value="2">자유</option> -->
+	<!-- 							</select> -->
 								<label>
 									<input type="radio" name="boardId" value="1" checked/>&nbsp;공지사항
 								</label>

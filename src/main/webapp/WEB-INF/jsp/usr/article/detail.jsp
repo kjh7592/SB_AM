@@ -108,7 +108,7 @@
 						</tr>
 						<tr>
 							<th>내용</th>
-							<th>${article.body}</th>
+							<th>${article.getForPrintBody()}</th>
 						</tr>
 				</tbody>
 			</table>
@@ -119,7 +119,6 @@
 				<a class="btn-text-link btn btn-active btn-accent" href="modify?id=${article.id }">수정</a>
 				<a class="btn-text-link btn btn-error" onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;" href="doDelete?id=${article.id }">삭제</a>
 			</c:if>
-<%-- 			<a class="btn-text-link btn btn-error" href="doReply?id=${article.id }&memberId=${memberId}">댓글 작성</a> --%>
 		</div>
 	</div>
 </section>
@@ -140,27 +139,45 @@
 	}
 </script>
 
-<section class="mt-8 text-xl">
+<section class="mt-8 text-xl mb-5">
 	<div class="container mx-auto px-3 pb-5 border-bottom-line">
-		<h2>댓글</h2>
+		<h2>댓글<span class="text-base">(${replies.size() }개)</span></h2>
 		
-<!-- 		반복문 돌려서 list처리 여기서부터 -->
-		<div class="py-2 pl-16 border-bottom-line text-base">
-			<div class="font-semibold"><span>작성자</span></div>
-			<div><span>내용</span></div>
-			<div class="tesx-sm text-gray-400"><span>날짜</span></div>
-		</div>
-<!-- 		여기까지 -->
-		
-		<form action="../reply/doWrite" method="POST" onsubmit="ReplyWrite__submitForm(this); return false;">
-			<input type="hidden" name="relTypeCode" value="article"/>
-			<input type="hidden" name="relId" value="${article.id} "/>
-			<div class="mt-4 p-4 border rounded-lg border-gray-400 text-base">
-				<div class="mb-2">현재 로그인한 회원 닉네임</div>
-				<textarea class="textarea textarea-bordered w-full" name="body" rows="2" placeholder="댓글을 남겨보세요"></textarea>
-				<div class="flex justify-end"><button class="btn btn-active btn-ghost btn-sm" >등록</button></div>
+		<c:forEach var="reply" items="${replies}">
+			<div class="py-2 pl-16 border-bottom-line text-base">
+				<div class="flex justify-between">
+					<div class="font-semibold"><span>${reply.writerName }</span></div>
+					<c:if test="${article.actorCanChangeData }">
+						<div class="dropdown">
+							<button class="btn btn-circle btn-ghost btn-sm">
+						      	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+						    </button>
+						    <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-20">
+						    	<li><a>수정</a></li>
+						        <li><a>삭제</a></li>
+						    </ul>
+					    </div>
+			   		</c:if>
+			    </div>
+				<div><span>${reply.getForPrintBody() }</span></div>
+				<div class="tesx-sm text-gray-400"><span>${reply.updateDate }</span></div>
 			</div>
-		</form>
+		</c:forEach>
+		
+		<c:if test="${rq.getLoginedMemberId() == 0 }">
+			<div class="text-base text-gray-400">댓글작성은 로그인 후 이용해주세요</div>
+		</c:if>
+		<c:if test="${rq.getLoginedMemberId() != 0 }">
+			<form action="../reply/doWrite" method="POST" onsubmit="ReplyWrite__submitForm(this); return false;">
+				<input type="hidden" name="relTypeCode" value="article"/>
+				<input type="hidden" name="relId" value="${article.id} "/>
+				<div class="mt-4 p-4 border rounded-lg border-gray-400 text-base">
+					<div class="mb-2">${rq.loginedMember.nickname }</div>
+					<textarea class="textarea textarea-bordered w-full" name="body" rows="2" placeholder="댓글을 남겨보세요"></textarea>
+					<div class="flex justify-end"><button class="btn btn-active btn-ghost btn-sm" >등록</button></div>
+				</div>
+			</form>
+		</c:if>
 	</div>
 </section>	
 <%@ include file="../common/foot.jsp" %>

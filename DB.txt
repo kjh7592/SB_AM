@@ -241,6 +241,8 @@ SELECT * FROM reply;
 
 SELECT LAST_INSERT_ID();
 
+ALTER TABLE `SB_AM`.`reply` ADD INDEX (`relTypeCode` , `relId`);
+
 # 게시물 갯수 늘리기
 -- INSERT INTO article
 -- (
