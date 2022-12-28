@@ -97,7 +97,6 @@ public class ArticleService {
 		}
 		
 		ResultData actorCanChangeDataRd = actorCanMD(loginedMemberId, article);
-		
 		article.setActorCanChangeData(actorCanChangeDataRd.isSuccess());
 	}
 
