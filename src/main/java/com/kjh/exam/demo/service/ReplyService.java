@@ -60,4 +60,12 @@ public class ReplyService {
 		
 		return ResultData.from("S-1", "가능");
 	}
+
+	public Reply getReply(int id) {
+		return replyRepository.getReply(id);
+	}
+
+	public void deleteArticle(int id) {
+		replyRepository.deleteArticle(id);
+	}
 }
