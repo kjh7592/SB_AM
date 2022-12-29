@@ -69,10 +69,6 @@ public class UsrMemberController {
 	@ResponseBody
 	public String doLogin(String loginId, String loginPw) {
 		
-		if(rq.getLoginedMemberId() != 0) {
-			return Utility.jsHistoryBack("이미 로그인 되어있습니다");
-		}
-		
 		if(Utility.empty(loginId)) {
 			return Utility.jsHistoryBack("아이디를 입력해주세요");
 		}
@@ -98,10 +94,6 @@ public class UsrMemberController {
 	@RequestMapping("/usr/member/doLogout")
 	@ResponseBody
 	public String doLogout() {
-		
-		if(rq.getLoginedMemberId() == 0) {
-			return Utility.jsHistoryBack("로그아웃 상태입니다");
-		}
 		
 		rq.logout();
 		

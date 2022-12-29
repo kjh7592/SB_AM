@@ -8,17 +8,20 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.kjh.exam.demo.interceptor.BeforeActionInterceptor;
 import com.kjh.exam.demo.interceptor.NeedLoginInterceptor;
+import com.kjh.exam.demo.interceptor.NeedLogoutInterceptor;
 
 @Configuration
 public class MyWebMvcConfigurer implements WebMvcConfigurer {
 
 	private BeforeActionInterceptor beforeActionInterceptor;
 	private NeedLoginInterceptor needLoginInterceptor;
+	private NeedLogoutInterceptor needLogoutInterceptor;
 
 	@Autowired
-	public MyWebMvcConfigurer(BeforeActionInterceptor beforeActionInterceptor, NeedLoginInterceptor needLoginInterceptor) {
+	public MyWebMvcConfigurer(BeforeActionInterceptor beforeActionInterceptor, NeedLoginInterceptor needLoginInterceptor, NeedLogoutInterceptor needLogoutInterceptor) {
 		this.beforeActionInterceptor = beforeActionInterceptor;
 		this.needLoginInterceptor = needLoginInterceptor;
+		this.needLogoutInterceptor = needLogoutInterceptor;
 	}
 
 	@Override
@@ -41,13 +44,24 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 		ir.addPathPatterns("/usr/article/doDelete");
 		ir.addPathPatterns("/usr/article/modify");
 		ir.addPathPatterns("/usr/article/doModify");
+		ir.addPathPatterns("/usr/reactionPoint/getReactionPoint");
 		ir.addPathPatterns("/usr/reactionPoint/doReactionPoint");
 		ir.addPathPatterns("/usr/reactionPoint/delReactionPoint");
 		ir.addPathPatterns("/usr/reply/doWrite");
+		ir.addPathPatterns("/usr/reply/doDelete");
+		ir.addPathPatterns("/usr/reply/doModify");
+		ir.addPathPatterns("/usr/reply/getModifyForm");
+		ir.addPathPatterns("/usr/member/doLogout");
 		
 //		registry.addInterceptor(needLoginInterceptor).addPathPatterns("/usr/article/write")
 //				.addPathPatterns("/usr/article/doWrite").addPathPatterns("/usr/article/doDelete")
 //				.addPathPatterns("/usr/article/modify").addPathPatterns("/usr/article/doModify");
+		
+		ir = registry.addInterceptor(needLogoutInterceptor);
+		ir.addPathPatterns("/usr/member/login");
+		ir.addPathPatterns("/usr/member/doLogin");
+		ir.addPathPatterns("/usr/member/join");
+		ir.addPathPatterns("/usr/member/dpJoin");
 	}
 	
 	
