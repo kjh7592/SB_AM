@@ -138,12 +138,31 @@
 		form.submit();
 	}
 	
+	originalForm = null;
+	originalId = null;
+	
+	function ReplyModify__cancel(i){
+		let replyContent = $('#' + i);
+		replyContent.html(originalForm);
+		
+		originalForm = null;
+		originalId = null;
+	}
+	
 	function ReplyModify__getForm(replyId, i){
+		
+		if(originalForm != null){
+			ReplyModify__cancel(originalId);
+		}
 		
 		$.get('../reply/getModifyForm', {
 			id : replyId,
 			ajaxMode : 'Y'
 		}, function(data){
+			let replyContent = $('#' + i);
+			originalId = i;
+			originalForm = replyContent.html(); // html()는 내용을 덮어쓰는 역할(안에 공백이라면 기존에 값을 그대로 덮어씌움)
+			
 			let modifyForm = $('#' + i);
 			
 			let addHtml = `
@@ -153,7 +172,7 @@
 						<div class="mb-2"><span>\${data.data1.writerName}</span></div>
 						<textarea class="textarea textarea-bordered w-full" name="body" rows="2" placeholder="댓글을 남겨보세요">\${data.data1.body}</textarea>
 						<div class="flex justify-end">
-							<a href="detail?id=\${data.data1.relId}" class="btn btn-active btn-ghost btn-sm mr-2">취소</a>
+							<a onclick="ReplyModify__cancel(\${i})" class="btn btn-active btn-ghost btn-sm mr-2">취소</a>
 							<button class="btn btn-active btn-ghost btn-sm" >등록</button>
 						</div>
 					</div>
@@ -161,6 +180,7 @@
 			
 			modifyForm.empty().html("");
 			modifyForm.append(addHtml);
+			
 		}, 'json');
 		
 	}
