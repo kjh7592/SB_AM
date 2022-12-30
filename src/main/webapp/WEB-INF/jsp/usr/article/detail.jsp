@@ -141,29 +141,19 @@
 	originalForm = null;
 	originalId = null;
 	
-	function ReplyModify__cancel(i){
-		let replyContent = $('#' + i);
-		replyContent.html(originalForm);
-		
-		originalForm = null;
-		originalId = null;
-	}
-	
 	function ReplyModify__getForm(replyId, i){
 		
 		if(originalForm != null){
 			ReplyModify__cancel(originalId);
 		}
 		
-		$.get('../reply/getModifyForm', {
+		$.get('../reply/getReplyContent', {
 			id : replyId,
 			ajaxMode : 'Y'
 		}, function(data){
 			let replyContent = $('#' + i);
 			originalId = i;
 			originalForm = replyContent.html(); // html()는 내용을 덮어쓰는 역할(안에 공백이라면 기존에 값을 그대로 덮어씌움)
-			
-			let modifyForm = $('#' + i);
 			
 			let addHtml = `
 				<form action="../reply/doModify" method="POST" onsubmit="ReplyWrite__submitForm(this); return false;">
@@ -178,11 +168,21 @@
 					</div>
 				</form>`;
 			
-			modifyForm.empty().html("");
-			modifyForm.append(addHtml);
+			replyContent.empty().html("");
+			replyContent.append(addHtml);
 			
 		}, 'json');
 		
+	}
+	
+	// 취소함수가 수정함수에 들어가있으면 수정버튼을 이미 실행중일때에 또 다른 댓글의 수정버튼을 눌렀을 때에만 취소함수가 실행되고,
+	// 취소버튼을 눌렀을때에는 취소함수가 실행될 수 없음(취소함수가 전역함수가 아니기 때문에)
+	function ReplyModify__cancel(i){
+		let replyContent = $('#' + i);
+		replyContent.html(originalForm);
+			
+		originalForm = null;
+		originalId = null;
 	}
 </script>
 

@@ -73,8 +73,8 @@ public class ReplyService {
 		replyRepository.modifyArticle(id, body);
 	}
 	
-	public Reply getForPrintReply(int id) {
-		return replyRepository.getForPrintReply(id);
+	public Reply getReplyContent(int id) {
+		return replyRepository.getReplyContent(id);
 	}
 
 }
