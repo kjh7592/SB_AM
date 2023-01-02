@@ -3,11 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script>
 	let msg = '${msg}'.trim();
-	let historyBack = '${hitoryBack}' == 'true';
+	let historyBack = '${historyBack}' == 'true';
 	let replaceUri = '${replaceUri}'.trim();
 	
 	if(msg){
-		alert(msg);
+		alert(msg);	
 	}
 	
 	if(historyBack){

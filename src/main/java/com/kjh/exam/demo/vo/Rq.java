@@ -45,7 +45,6 @@ public class Rq {
 		this.loginedMemberId = loginedMemberId;
 		this.loginedMember = loginedMember;
 		
-		this.req.setAttribute("rq", this);
 	}
 
 	public void jsPrintHistoryBack(String msg) {
@@ -76,10 +75,5 @@ public class Rq {
 		return "usr/common/js";
 	}
 
-	// 해당 메서드는 Rq객체의 생성을 유도한다.
-	// 편의를 위해서 BeforeActionInterceptor에서 호출해줘야 함
-	public void initOnBeforeActionInterceptor() {
-		
-	}
 	
 }

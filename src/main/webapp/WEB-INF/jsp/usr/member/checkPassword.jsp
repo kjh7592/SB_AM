@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var="pageTitle" value="PROFILE"/>
+<c:set var="pageTitle" value="CHERK PASSWORD"/>
 <%@ include file="../common/head.jsp" %>
+
 <section class="mt-8 text-xl">
 	<div class="container mx-auto px-3">
-		<form action="doLogin" method="POST">
+		<form action="doCheckPassword" method="POST">
 			<div class="table-box-type-1">
 				<table>
 					<colgroup>
@@ -14,30 +15,21 @@
 					
 					<tbody>
 						<tr>
-							<th>가입일</th>
-							<th>${member.regDate}</th>
+							<th>로그인 아이디</th>
+							<td>${rq.loginedMember.loginId }</td>
 						</tr>
 						<tr>
-							<th>로그인아이디</th>
-							<th>${member.loginId}</th>
+							<th>로그인 비밀번호</th>
+							<td><input class="input input-bordered input-secondary w-full max-w-xs" type="text" name="loginPw" placeholder="비밀번호를 입력해주세요"></td>
 						</tr>
 						<tr>
-							<th>이름</th>
-							<th>${member.nickname}</th>
-						</tr>
-						<tr>
-							<th>전화번호</th>
-							<th>${member.phoneNumber}</th>
-						</tr>
-						<tr>
-							<th>작성자</th>
-							<th>${article.writerName}</th>
+							<td colspan="2"><input  class="btn btn-success" type="submit" value="확인"></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>	
 		</form>
-		<div class="btns">
+		<div class="btns mt-2">
 			<button class="btn-text-link" type="button" onclick="history.back();">뒤로가기</button>
 		</div>
 	</div>

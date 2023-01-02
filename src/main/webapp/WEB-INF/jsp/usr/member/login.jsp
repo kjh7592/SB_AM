@@ -22,7 +22,7 @@
 							<td><input class="w-96 input input-bordered input-secondary w-full max-w-xs" type="text" name="loginPw" placeholder="비밀번호를 입력해주세요"></td>
 						</tr>
 						<tr>
-							<td colspan="2"><input  class="btn btn-success" type="submit" value="로그인"></td>
+							<td colspan="2"><input class="btn btn-success" type="submit" value="로그인"></td>
 						</tr>
 					</tbody>
 				</table>
