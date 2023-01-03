@@ -7,11 +7,17 @@
 
 html > body, html > body .toastui-editor-contents, html > body .ProseMirror {
 	font-family: 'ONE-Mobile-POP', sans-serif;
+/* 	적용한 폰트가 underline이 안먹을때 주는 속성 */
 	text-underline-position: under;
 }
 
 html > body .toastui-editor-contents, html > body .ProseMirror {
 	font-size: 1.25rem;
+	text-align: left;
+}
+
+html > body .toast-ui-viewer .toastui-editor-contents {
+	text-align: center;
 }
 
 .table-box-type-1 > table {
