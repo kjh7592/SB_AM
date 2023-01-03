@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="pageTitle" value="ARTICLE DETAIL" />
 <%@ include file="../common/head.jsp" %>
+<%@ include file="../common/toastUiEditorLib.jsp" %>
 
 <script>
 	const params = {};
@@ -66,7 +67,7 @@
 				<tbody>
 						<tr>
 							<th>번호</th>
-							<th><span class="badge">${article.id}</span></th>
+							<td><span class="badge">${article.id}</span></td>
 						</tr>
 						<tr>
 							<th>작성날짜</th>
@@ -104,11 +105,15 @@
 						</tr>
 						<tr>
 							<th>제목</th>
-							<th>${article.title}</th>
+							<td>${article.title}</td>
 						</tr>
 						<tr>
 							<th>내용</th>
-							<th>${article.getForPrintBody()}</th>
+							<td>
+								<div class="toast-ui-viewer">
+								   <script type="text/x-template">${article.getForPrintBody()}</script>
+								 </div>
+							</td>
 						</tr>
 				</tbody>
 			</table>
