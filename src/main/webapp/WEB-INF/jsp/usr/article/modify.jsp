@@ -19,23 +19,23 @@
 					<tbody>
 							<tr>
 								<th>번호</th>
-								<th>${article.id}</th>
+								<td>${article.id}</td>
 							</tr>
 							<tr>
 								<th>작성날짜</th>
-								<th>${article.regDate}</th>
+								<td>${article.regDate}</td>
 							</tr>
 							<tr>
 								<th>수정날짜</th>
-								<th>${article.updateDate}</th>
+								<td>${article.updateDate}</td>
 							</tr>
 							<tr>
 								<th>작성자</th>
-								<th>${article.writerName}</th>
+								<td>${article.writerName}</td>
 							</tr>
 							<tr>
 								<th>제목</th>
-								<th><input class="input input-bordered input-error w-full max-w-xs" type="text" name="title" placeholder="제목을 입력해주세요" value="${article.title}" /></th>
+								<td><input class="input input-bordered input-error w-full max-w-xs" type="text" name="title" placeholder="제목을 입력해주세요" value="${article.title}" /></td>
 							</tr>
 							<tr>
 								<th>내용</th>

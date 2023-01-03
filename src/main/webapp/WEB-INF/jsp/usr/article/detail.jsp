@@ -71,23 +71,23 @@
 						</tr>
 						<tr>
 							<th>작성날짜</th>
-							<th>${article.regDate}</th>
+							<td>${article.regDate}</td>
 						</tr>
 						<tr>
 							<th>수정날짜</th>
-							<th>${article.updateDate}</th>
+							<td>${article.updateDate}</td>
 						</tr>
 						<tr>
 							<th>조회수</th>
-							<th><span class="badge article-detail__hit-count">${article.hitCount}</span></th>
+							<td><span class="badge article-detail__hit-count">${article.hitCount}</span></td>
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<th>${article.writerName}</th>
+							<td>${article.writerName}</td>
 						</tr>
 						<tr>
 							<th>추천</th>
-							<th>
+							<td>
 								<c:if test="${rq.getLoginedMemberId() == 0 }">
 <%-- 									<span class="badge">${article.sumReactionPoint}</span> --%>
 									<span class="badge">좋아요 : ${article.goodReactionPoint}개</span>
@@ -101,7 +101,7 @@
 									<a id="badBtn" class="btn btn-xs btn-outline" href="../reactionPoint/doReactionPoint?id=${article.id }&relTypeCode=article&point=-1">싫어요👎</a>
 									<span class="badge">싫어요 : ${article.badReactionPoint * -1}개</span>
 								</c:if>
-							</th>
+							</td>
 						</tr>
 						<tr>
 							<th>제목</th>
