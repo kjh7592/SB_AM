@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="pageTitle" value="LOGIN"/>
 <%@ include file="../common/head.jsp" %>
+
 <section class="mt-8 text-xl">
 	<div class="container mx-auto px-3">
 		<form action="doLogin" method="POST">
