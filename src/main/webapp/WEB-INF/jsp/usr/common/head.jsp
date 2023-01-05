@@ -38,13 +38,15 @@
 					<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/member/myPage"><span>MYPAGE</span></a></li>
 					<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/member/doLogout"><span>LOGOUT</span></a></li>
 				</c:if>
+				<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/home/APITest"><span>API</span></a></li>
+				<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/home/APITest2"><span>API2</span></a></li>
 			</ul>
 		</div>
 	</header>
 	
 	<section class="my-3 text-2xl">
 		<div class="container mx-auto px-3">
-			<h1>${pageTitle}&nbsp;Page</h1>
+			<h1>${pageTitle}&nbsp;PAGE</h1>
 		</div>
 	</section>
 	
