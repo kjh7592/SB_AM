@@ -9,7 +9,7 @@
     <button onclick="panTo()">지도 중심좌표 부드럽게 이동시키기</button> 
 </p>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	323acdaa1e769415ba96a7a1ef134016"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=654913c6a798e1c0773c1852c24871db"></script>
 
 <script>
 	const API_KEY = 'sd2%2Fw1FPMP7dCiLT1r8GNJatfwBCKhZfFVQAA3lNV55hr4o2tNP9B0NpNBn7iAGvAN8QwKTBfli73H%2Fdq7xZBw%3D%3D';
@@ -60,6 +60,17 @@
 	
 	// 마커가 지도 위에 표시되도록 설정합니다
 	marker.setMap(map);
+	
+	// 마커가 표시될 위치입니다 
+	var markerPosition2  = new kakao.maps.LatLng(33.450701, 126.570667); 
+
+	// 마커를 생성합니다
+	var marker2 = new kakao.maps.Marker({
+	    position: markerPosition2
+	});
+
+	// 마커가 지도 위에 표시되도록 설정합니다
+	marker2.setMap(map);
 </script>
 
 <%@ include file="../common/foot.jsp"%>
