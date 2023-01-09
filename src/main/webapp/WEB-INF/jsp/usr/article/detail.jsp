@@ -52,7 +52,6 @@
 // 		연습코드
 // 		setTimeout(ArticleDetail__increseHitCount, 2000);
 	})
-	
 </script>
 
 <section class="mt-8 text-xl">
