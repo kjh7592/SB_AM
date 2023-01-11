@@ -23,14 +23,20 @@
 							<td><input class="w-96 input input-bordered input-secondary w-full max-w-xs" type="text" name="loginPw" placeholder="비밀번호를 입력해주세요"></td>
 						</tr>
 						<tr>
-							<td colspan="2"><input class="btn btn-success" type="submit" value="로그인"></td>
+							<td colspan="2">
+								<input class="btn btn-success" type="submit" value="로그인">
+							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>	
 		</form>
-		<div class="btns">
-			<button class="btn-text-link" type="button" onclick="history.back();">뒤로가기</button>
+		<div class="btns mt-2 flex justify-between">
+			<button class="btn-text-link btn btn-active btn-ghost" type="button" onclick="history.back();">뒤로가기</button>
+			<div>
+				<a class="btn btn-active btn-ghost" href="findLoginId">아이디 찾기</a>
+				<a class="btn btn-active btn-ghost" href="findLoginPw">비밀번호 찾기</a>
+			</div>
 		</div>
 	</div>
 </section>
