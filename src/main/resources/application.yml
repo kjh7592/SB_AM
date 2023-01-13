@@ -1,6 +1,10 @@
 server:
   port: 8084
 spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
   mail:
     host: smtp.gmail.com
     port: 587
@@ -24,6 +28,7 @@ spring:
 mybatis:
   type-aliases-package: com.kjh.exam.demo.vo
 custom:
+  genFileDirPath: C:\work\sts-4.16.0.RELEASE-workspace
   siteName: SB_AM
   siteMainUri: http://localhost:8084
   emailFrom: no-reply@localhost
