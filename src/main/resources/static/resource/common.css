@@ -39,8 +39,25 @@ html > body .toast-ui-viewer .toastui-editor-contents {
 	text-decoration: underline;
 }
 
-.border-bottom-line {
-	border-bottom: 1px solid #e1e1e1;
+html[data-theme="dark"] :is(.table-box-type-1>table th, .table-box-type-1>table td) {
+	border-color: white;
+}
+
+html>body .toast-ui-viewer {
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.theme-toggle .fa-solid{
+	display: none;
+}
+
+html[data-theme="dark"] .theme-toggle .fa-solid {
+  display:inline;
+}
+
+html[data-theme="dark"] .theme-toggle .fa-regular {
+  display:none;
 }
 
 body {
@@ -135,6 +152,10 @@ body {
 	border: 0;
 	cursor: pointer;
 	opacity: .75;
+}
+
+.border-bottom-line {
+	border-bottom: 1px solid #e1e1e1;
 }
 
 .rounded-circle {
