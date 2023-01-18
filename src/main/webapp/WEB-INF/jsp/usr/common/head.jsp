@@ -81,6 +81,7 @@
 				</c:if>
 				<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/home/APITest"><span>API</span></a></li>
 				<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/home/APITest2"><span>API2</span></a></li>
+				<li><a href="/usr/payment/paymentWindow" class="h-full flex items-center px-2"><span>결제</span></a></li>
 			</ul>
 		</div>
 	</header>
