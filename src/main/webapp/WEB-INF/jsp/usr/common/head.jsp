@@ -60,6 +60,7 @@
 						<span><i class="fa-regular fa-sun"></i></span>
 					</a>
 				</li>
+				
 				<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/"><span>HOME</span></a></li>
 				<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/article/list?boardId=1"><span>NOTICE</span></a></li>
 				<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/article/list?boardId=2"><span>FREE</span></a></li>
@@ -68,7 +69,14 @@
 					<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/member/join"><span>JOIN</span></a></li>
 				</c:if>
 				<c:if test="${rq.getLoginedMemberId() != 0 }">
-					<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/member/myPage"><span>MYPAGE</span></a></li>
+					<c:choose>
+						<c:when test="${rq.getLoginedMember().authLevel != 7 }">
+							<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/member/myPage"><span>MYPAGE</span></a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/adm/member/list"><span>회원관리</span></a></li>
+						</c:otherwise>
+					</c:choose>
 					<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/member/doLogout"><span>LOGOUT</span></a></li>
 				</c:if>
 				<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/home/APITest"><span>API</span></a></li>
